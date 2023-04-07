@@ -1,5 +1,5 @@
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/posts";
+import { getAllPostIds, getPostData } from "../../serivces/posts";
 
 export async function getStaticPaths() {
     const paths = getAllPostIds();
