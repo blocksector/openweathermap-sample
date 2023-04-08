@@ -2,7 +2,7 @@ import React from "react";
 
 const compassSector = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
 
-export default function WeatherCard({ data, theme }) {
+export default function WeatherCard({ data, displayInMetric, theme }) {
 
     const { name, main, wind, weather } = data;
 
@@ -15,7 +15,7 @@ export default function WeatherCard({ data, theme }) {
                 <p className="rounded-t-lg text-xl">{weather[0].main}</p>
                 <p className="w-full rounded-t-lg text-xl flex justify-between">
                     <span className="text-base">RH: {main.humidity}%</span>
-                    <span className="text-base">Wind: {wind.deg}°{compassSector[(wind.deg / 22.5).toFixed(0)]}</span>
+                    <span className="text-base">W: {Math.round(wind.speed) + (displayInMetric ? 'm/s': 'mi/h')} {compassSector[(wind.deg / 22.5).toFixed(0)]}</span>
                 </p>
             </div>
         </section>

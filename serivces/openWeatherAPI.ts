@@ -30,7 +30,7 @@ export const getLocationWeatherByCoords = async ({ lat, lon, units }) => {
     }).then((res) => res.json())
 }
 
-export const getLocationWeather = async ({ q, units }) => {
+export const getLocationWeather = async ({ q, units, wforecast }) => {
     const url = `${host}data/2.5/weather`
     const searchParams = new URLSearchParams({
         q: `${q},${countryCode}`,
