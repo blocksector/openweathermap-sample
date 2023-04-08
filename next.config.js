@@ -1,6 +1,5 @@
 module.exports = {
     reactStrictMode: true,
-    webpack4: true,
     webpack: (config) => {
         config.resolve.fallback = { fs: false };
 

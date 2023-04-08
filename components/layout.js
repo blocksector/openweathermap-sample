@@ -1,21 +1,18 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from './layout.module.scss';
-import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
 
 export const siteTitle = 'WeatherGO';
 
 export default function Layout({ children }) {
   return (
-    <div className={styles.container}>
-        <div className='absolute inset-0 -z-10'>
-          <Image
-            src={'/images/background-sunrise.jpg'}
-            layout='fill'
-            objectFit='cover'
-            quality={100} />
-        </div>
+    <div>
+      <div className='absolute inset-0 -z-10'>
+        <Image
+          src={'/images/background-sunrise.jpg'}
+          layout='fill'
+          objectFit='cover'
+          quality={100} />
+      </div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -31,7 +28,12 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <main>{children}</main>
+      <main className='flex flex-col h-screen'>
+        {children}
+        <footer className='flex justify-center p-2 bg-opacity-60 bg-gray-600'>
+          <p className='text-white'><small>Powered by: NextJS, Tailwindcss</small></p>
+        </footer>
+      </main>
     </div>
   );
 }

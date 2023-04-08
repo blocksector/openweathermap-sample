@@ -1,10 +1,10 @@
 import React from "react";
 import optionStyles from './toggleOption.module.scss';
 
-export default function ToggleOption({ labelFalse, labelTrue, onChange, value }) {
+export default function ToggleOption({ labelFalse, labelTrue, onChange, value, styles }) {
 
     return (
-        <div className={`${optionStyles.toggleOption} flex`}>
+        <div className={`${optionStyles.toggleOption} flex ${styles}`}>
             <span className="mr-2 text-sm font-medium text-white">
                 {labelFalse}
             </span>
