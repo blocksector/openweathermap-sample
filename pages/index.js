@@ -36,14 +36,14 @@ export default function Home({ allPostsData }) {
     }
     getLocationForecast(query)
       .then((res) => {
-        if (res.cod === '404') {
-          return setAlertMessage(res.message);
+
+        if (res[0].cod === '404') {
+          return setAlertMessage(res[0].message);
         }
 
         setLocation(locStr || location);
         setLocationWeather(res[0]);
         setLocationForecast(res[1]);
-        console.log(res)
       });
   }
 

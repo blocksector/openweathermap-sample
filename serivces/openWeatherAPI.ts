@@ -74,7 +74,11 @@ export const getLocationForecast = async ({ q, units, wforecast }) => {
         "method": "GET",
     }).then((res) => res.json())
     .then((res)=>{
-        console.log(res)
+        
+        if (res.cod === '404') {
+            return res;
+        }
+
         const dailyForecast = [];
 
         const nowDate = new Date();
