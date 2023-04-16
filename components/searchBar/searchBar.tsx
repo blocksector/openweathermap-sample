@@ -33,9 +33,14 @@ export default function SearchBar({ setResult, onSubmit }) {
     //     // setLocations();
     // }
 
+    const triggerSubmit = (ev) => {
+        ev.preventDefault();
+        onSubmit();
+    }
+
     return (
         <>
-            <form action="#" onSubmit={onSubmit} className="flex px-3 py-1 bg-white rounded-md w-full">
+            <form onSubmit={triggerSubmit} className="flex px-3 py-1 bg-white rounded-md w-full">
                 <input className="flex-grow outline-none"
                     placeholder={searchPlaceHolder}
                     onChange={(event) => setResult(event.target.value)}

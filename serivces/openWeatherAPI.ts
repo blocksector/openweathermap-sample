@@ -1,7 +1,7 @@
 
-const host = process.env.WEATHER_API;
-const countryCode = process.env.COUNTRY_CODE
-const appId = process.env.WEATHER_API_KEY;
+const host = process.env.NEXT_PUBLIC_WEATHER_API;
+const countryCode = process.env.NEXT_PUBLIC_COUNTRY_CODE
+const appId = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
 const weatherEndpoint = `${host}data/2.5/weather`;
 const geolocEndpoint = `${host}geo/1.0/direct`;
