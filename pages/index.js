@@ -1,10 +1,11 @@
 import Layout, { siteTitle } from '../components/layout';
-import SearchBar from '../components/searchBar/searchBar';
+import SearchBar from '../components/SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
-import ToggleOption from '../components/switch/toggleOption';
-import WeatherCard from '../components/weatherCard/weatherCard';
-import ForecastCard from '../components/forecastCard/forcastCard';
+import ToggleOption from '../components/Switch/ToggleOption';
+import WeatherCard from '../components/WeatherCard/WeatherCard';
+import ForecastCard from '../components/ForecastCard/ForecastCard';
 import { getLocationWeather } from '../serivces/openWeatherAPI';
+import Alert, { AlertTypes } from '../components/Alert/Alert';
 
 const celsius = '°C';
 const farenheit = '°F';
@@ -15,27 +16,33 @@ export default function Home({ allPostsData }) {
   const [session, setSession] = useState();
   const [location, setLocation] = useState();
   const [locationWeather, setLocationWeather] = useState();
+  const [ alertMessage, setAlertMessage ] = useState('');
 
   useEffect(() => {
     if (!location) return;
     fetchWeatherData();
   }, [inCelsius]);
 
-  const fetchWeatherData = () => {
+  const fetchWeatherData = (locStr) => {
+
+    setAlertMessage('');
+
     // fetch weather data
     const query = {
-      q: location,
+      q: locStr || location,
       units: inCelsius ? 'metric' : 'imperial',
       wforecast: !!session
     }
 
     getLocationWeather(query)
       .then((res) => {
-        console.log(res);
 
-        if (res.cod !== '404') {
-          setLocationWeather(res);
+        if (res.cod === '404') {
+          return setAlertMessage(res.message);
         }
+
+        setLocation(locStr || location);
+        setLocationWeather(res);
       });
   }
 
@@ -46,6 +53,7 @@ export default function Home({ allPostsData }) {
         </div> */}
         <div className='flex flex-col flex-grow items-center justify-center w-screen'>
           <div className="flex flex-col lg:w-3/5 w-11/12 relative">
+            {alertMessage && (<Alert alertType={AlertTypes.danger} message={alertMessage} />)}
             <SearchBar setResult={setLocation} onSubmit={fetchWeatherData} />
           </div>
           {locationWeather && (

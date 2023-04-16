@@ -3,13 +3,15 @@ import useSWR from 'swr'
 import styles from './searchBar.module.scss';
 import { getLocations } from "../../serivces/openWeatherAPI";
 import { data } from "autoprefixer";
+import Alert, { AlertTypes } from "../Alert/Alert";
 
 const searchPlaceHolder = "Search location";
-const minCharToSearch = 3;
+const minCharToSearch = 1;
 
-export default function SearchBar({ setResult, onSubmit }) {
+export default function SearchBar({ onSubmit }) {
 
     const [searchStr, setSearchStr] = useState('');
+    const [ alertMessage, setAlertMessage ] = useState('');
     // const [locations, setLocations] = useState();
 
     // useEffect(() => {
@@ -28,22 +30,26 @@ export default function SearchBar({ setResult, onSubmit }) {
     //     return () => clearTimeout(fetchLocations);
     // }, [searchStr]);
 
-    // const trigger = (location) => {
-    //     setResult(location);
-    //     // setLocations();
-    // }
-
     const triggerSubmit = (ev) => {
         ev.preventDefault();
-        onSubmit();
+        setAlertMessage('');
+
+        console.log(searchStr.length, minCharToSearch, searchStr.length < minCharToSearch)
+        if (searchStr.length < minCharToSearch) {
+            setAlertMessage(`Min of ${minCharToSearch} characters to search`)
+            return false;
+        };
+
+        onSubmit(searchStr);
     }
 
     return (
         <>
+            {alertMessage && (<Alert alertType={AlertTypes.danger} message={alertMessage} duration={200} />)}
             <form onSubmit={triggerSubmit} className="flex px-3 py-1 bg-white rounded-md w-full">
                 <input className="flex-grow outline-none"
                     placeholder={searchPlaceHolder}
-                    onChange={(event) => setResult(event.target.value)}
+                    onChange={(event) => setSearchStr(event.target.value)}
                 />
                 <button type="submit" className="outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
@@ -51,6 +57,7 @@ export default function SearchBar({ setResult, onSubmit }) {
                     </svg>
                 </button>
             </form>
+
             {/* {locations && (
                 <ul className="rounded p-1 bg-white rounded w-full absolute top-full mt-1 space-y-1">
                     {locations.map((location, i) =>

@@ -5,14 +5,7 @@ export const siteTitle = 'WeatherGO';
 
 export default function Layout({ children }) {
   return (
-    <div>
-      <div className='absolute inset-0 -z-10'>
-        <Image
-          src={'/images/background-sunrise.jpg'}
-          layout='fill'
-          objectFit='cover'
-          quality={100} />
-      </div>
+    <div className='bg-opacity-40 bg-gray-600'>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -28,6 +21,13 @@ export default function Layout({ children }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <div className='absolute inset-0 -z-10'>
+        <Image
+          src={'/images/background-sunrise.jpg'}
+          layout='fill'
+          objectFit='cover'
+          quality={100} />
+      </div>
       <main className='flex flex-col h-screen'>
         {children}
         <footer className='flex justify-center p-2 bg-opacity-60 bg-gray-600'>
