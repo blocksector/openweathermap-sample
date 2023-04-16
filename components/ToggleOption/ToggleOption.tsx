@@ -1,6 +1,7 @@
 import React from "react";
 import optionStyles from './toggleOption.module.scss';
 
+
 export default function ToggleOption({ labelFalse, labelTrue, onChange, value, styles }) {
 
     return (

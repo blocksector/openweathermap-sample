@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import useSWR from 'swr'
-import styles from './searchBar.module.scss';
-import { getLocations } from "../../serivces/openWeatherAPI";
-import { data } from "autoprefixer";
 import Alert, { AlertTypes } from "../Alert/Alert";
 
 const searchPlaceHolder = "Search location";
