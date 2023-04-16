@@ -1,7 +1,7 @@
 import Layout, { siteTitle } from '../components/layout';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { useState, useEffect } from 'react';
-import ToggleOption from '../components/Switch/ToggleOption';
+import ToggleOption from '../components/ToggleOption/ToggleOption';
 import WeatherCard from '../components/WeatherCard/WeatherCard';
 import ForecastCard from '../components/ForecastCard/ForecastCard';
 import { getLocationWeather } from '../serivces/openWeatherAPI';
