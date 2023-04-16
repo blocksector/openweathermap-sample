@@ -1,8 +1,12 @@
+/**
+ * Alert component will act as a singleton component in displaying alert messages like toast
+ * 
+ * TODO: auto remove, additional alert types
+ */
 
 export enum AlertTypes {
     danger = 'bg-red-700 text-white'
 }
-
 
 export default function Alert({ message, alertType, duration=0 }) {
     return (

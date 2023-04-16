@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from "react";
+/**
+ * Search Bar component
+ */
+
+import React, { useState } from "react";
 import Alert, { AlertTypes } from "../Alert/Alert";
 
 const searchPlaceHolder = "Search location";
@@ -8,8 +12,9 @@ export default function SearchBar({ onSubmit }) {
 
     const [searchStr, setSearchStr] = useState('');
     const [ alertMessage, setAlertMessage ] = useState('');
-    // const [locations, setLocations] = useState();
 
+    /** disambiguation */
+    // const [locations, setLocations] = useState();
     // useEffect(() => {
     //     // clear locations to remove disambiguation list
     //     setLocations(null);
@@ -27,15 +32,20 @@ export default function SearchBar({ onSubmit }) {
     // }, [searchStr]);
 
     const triggerSubmit = (ev) => {
+
+        // prevent reloading of the page
         ev.preventDefault();
+
+        // clear alert messages
         setAlertMessage('');
 
-        console.log(searchStr.length, minCharToSearch, searchStr.length < minCharToSearch)
+        // prevent action if number of chars below the threshold to trigger search
         if (searchStr.length < minCharToSearch) {
             setAlertMessage(`Min of ${minCharToSearch} characters to search`)
             return false;
         };
 
+        // invok onSubmit prop function
         onSubmit(searchStr);
     }
 

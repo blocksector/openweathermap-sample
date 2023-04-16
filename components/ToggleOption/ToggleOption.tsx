@@ -1,3 +1,7 @@
+/**
+ * A switch component
+ */
+
 import React from "react";
 import optionStyles from './toggleOption.module.scss';
 

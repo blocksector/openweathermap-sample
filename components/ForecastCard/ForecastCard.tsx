@@ -1,3 +1,9 @@
+/**
+ * the 5-day forecast component
+ * 
+ * ToDO: integration of subscription and fetching of a 5-day forecast
+ */
+
 import React from "react";
 
 export default function ForecastCard({ theme }) {

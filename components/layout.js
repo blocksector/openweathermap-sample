@@ -26,6 +26,7 @@ export default function Layout({ children }) {
           src={'/images/background-sunrise.jpg'}
           layout='fill'
           objectFit='cover'
+          alt='Beach'
           quality={100} />
       </div>
       <main className='flex flex-col h-screen'>

@@ -36,7 +36,7 @@ export default function Home({ allPostsData }) {
 
     getLocationWeather(query)
       .then((res) => {
-
+        console.log(res)
         if (res.cod === '404') {
           return setAlertMessage(res.message);
         }
